@@ -26,15 +26,16 @@ default. Run these commands to get the latest version
 
 	sudo apt remove ffmpeg -y #remove the old version
 
-	apt-get install -y libavformat-dev libavcodec-dev libavdevice-dev \
-	libavutil-dev libswscale-dev libswresample-dev libavfilter-dev -y
-	# install other dependencies of ffmpeg
-
 	sudo add-apt-repository ppa:jonathonf/ffmpeg-4 -y
 
 	sudo apt install ffmpeg -y
 
 	ffmpeg -version #check if latest 4.x.x
+
+After you install latest ffmpeg, install other dependencies of pyAV with
+
+	sudo apt install -y libavformat-dev libavcodec-dev libavdevice-dev \
+	libavutil-dev libswscale-dev libswresample-dev libavfilter-dev -y
 
 ## Virtual environment
 
