@@ -16,7 +16,7 @@ def display_np_frame(np_frame):
     :np_frame: numpy array
     :returns: nothing
     """
-    plt.imshow(np_frame, interpolation='nearest', cmap='binary')
+    plt.imshow(np_frame)
     plt.show()
 
 def np_frame_diff(frame1, frame2):
@@ -56,9 +56,5 @@ def make_generator(filename):
     return container.decode(video = 0)
 
 if __name__ == "__main__":
-    videogen = make_generator('v/mha_s4_ep2.mp4')
-    frame = next(videogen)
-    x = frame.to_ndarray(format='rgb24')
-    print (x.shape)
-    input()
+    pass
     
