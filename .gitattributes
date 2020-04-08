@@ -1,0 +1,5 @@
+480p_trimmed.mp4 filter=lfs diff=lfs merge=lfs -text
+corrected_upscale.mp4 filter=lfs diff=lfs merge=lfs -text
+double_sr_video.mp4 filter=lfs diff=lfs merge=lfs -text
+test[[:space:]]frame[[:space:]]240p.bmp filter=lfs diff=lfs merge=lfs -text
+SR[[:space:]]test[[:space:]]frame[[:space:]]480p[[:space:]].png filter=lfs diff=lfs merge=lfs -text
