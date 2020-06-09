@@ -49,7 +49,7 @@ python. Install the latest one a try again.
 
 Source the virtual environment.
 
-	souce ~/.venvs/freddie/bin/activate
+	source ~/.venvs/freddie/bin/activate
 
 > NOTE: do this step every time you start working on the project. You should
 > see an indication that virtual environment is active in your shell
@@ -92,3 +92,4 @@ requirements.txt with
 
 	pip3 freeze > requirements.txt # if pip is for python2
 
+souce
