@@ -4,11 +4,11 @@ import logging
 import threading
 
 from context import Context
-from dandere2xlib.core.plugins.correction import correct_image
-from dandere2xlib.core.plugins.fade import fade_image
-from dandere2xlib.core.plugins.pframe import pframe_image
-from dandere2xlib.utils.dandere2x_utils import get_lexicon_value, get_list_from_file_wait, wait_on_file
-from dandere2xlib.utils.thread_utils import CancellationToken
+from freddielib.core.plugins.correction import correct_image
+from freddielib.core.plugins.fade import fade_image
+from freddielib.core.plugins.pframe import pframe_image
+from freddielib.utils.freddie_utils import get_lexicon_value, get_list_from_file_wait, wait_on_file
+from freddielib.utils.thread_utils import CancellationToken
 from wrappers.ffmpeg.pipe import Pipe
 from wrappers.frame.asyncframe import AsyncFrameWrite, AsyncFrameRead
 from wrappers.frame.frame import Frame
@@ -20,7 +20,7 @@ class Merge(threading.Thread):
         - This class is the driver for merging all the files that need to be merged together.
           Essentially, it calls the 'make_merge_image' method for every image that needs to be upscaled.
         - Other tasks are to ensure the files exist, async writing for optimizations, as well
-          as signalling to other parts of Dandere2x we've finished upscaling.
+          as signalling to other parts of Freddie we've finished upscaling.
     """
 
     def __init__(self, context: Context):
@@ -72,7 +72,7 @@ class Merge(threading.Thread):
         This section can best be explained through pictures. A visual way of expressing what 'merging'
         is doing is this section in the wiki.
 
-        https://github.com/aka-katto/dandere2x/wiki/How-Dandere2x-Works#part-2-using-observations-to-save-time
+        https://github.com/aka-katto/freddie/wiki/How-Freddie-Works#part-2-using-observations-to-save-time
 
         Inputs:
             - frame(x)
@@ -105,7 +105,7 @@ class Merge(threading.Thread):
         # Plugins Section #
         ###################
 
-        # Note: Run the plugins in the SAME order it was ran in dandere2x_cpp. If not, it won't work correctly.
+        # Note: Run the plugins in the SAME order it was ran in freddie_cpp. If not, it won't work correctly.
         out_image = pframe_image(context, out_image, frame_previous, frame_residual, list_residual, list_predictive)
         out_image = fade_image(context, out_image, list_fade)
         out_image = correct_image(context, out_image, list_corrections)
@@ -196,7 +196,7 @@ class Merge(threading.Thread):
 
             frame_previous = frame_next
 
-            # Signal to the rest of the dandere2x process we've finished upscaling frame 'x'.
+            # Signal to the rest of the freddie process we've finished upscaling frame 'x'.
             self.context.signal_merged_count = x
 
         self.pipe.wait_finish_stop_pipe()

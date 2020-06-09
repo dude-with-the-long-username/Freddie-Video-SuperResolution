@@ -11,7 +11,7 @@ import numpy as np
 from PIL import Image
 from scipy import misc  # pip install Pillow
 
-from dandere2xlib.utils.dandere2x_utils import rename_file, wait_on_file
+from freddielib.utils.freddie_utils import rename_file, wait_on_file
 
 
 # fuck this function, lmao. Credits to
@@ -69,7 +69,7 @@ class DisplacementVector:
 
 class Frame:
     """
-    An image class for Dandere2x that wraps around the numpy library.
+    An image class for Freddie that wraps around the numpy library.
 
     usage:
     frame = Frame()
@@ -102,7 +102,7 @@ class Frame:
         self.string_name = input_string
 
     # Wait on a file if it does not exist yet. Wait can be cancelled via a cancellation token
-    from dandere2xlib.utils.thread_utils import CancellationToken
+    from freddielib.utils.thread_utils import CancellationToken
     def load_from_string_wait(self, input_string, cancel_token=CancellationToken()):
 
         logger = logging.getLogger(__name__)
@@ -238,7 +238,7 @@ class Frame:
             self.logger.error('this_y + block_size - 1 > self.height')
             self.logger.error(str(this_y + block_size - 1) + '?>' + str(self.height))
 
-            raise ValueError('Invalid Dimensions for Dandere2x Image, See Log. ')
+            raise ValueError('Invalid Dimensions for Freddie Image, See Log. ')
 
         if other_x + block_size - 1 > frame_other.width or other_y + block_size - 1 > frame_other.height:
             self.logger.error('Input Dimensions Invalid for Copy Block Function, printing variables. Send Tyler this!')
@@ -250,7 +250,7 @@ class Frame:
             self.logger.error('other_y + block_size - 1 > frame_other.height')
             self.logger.error(str(other_y + block_size - 1) + '?>' + str(frame_other.height))
 
-            raise ValueError('Invalid Dimensions for Dandere2x Image, See Log. ')
+            raise ValueError('Invalid Dimensions for Freddie Image, See Log. ')
 
         if this_x < 0 or this_y < 0:
             self.logger.error('Negative Input for \"this\" image')

@@ -4,8 +4,8 @@ import logging
 import subprocess
 
 from context import Context
-from dandere2xlib.utils.dandere2x_utils import get_a_valid_input_resolution
-from dandere2xlib.utils.yaml_utils import get_options_from_section
+from freddielib.utils.freddie_utils import get_a_valid_input_resolution
+from freddielib.utils.yaml_utils import get_options_from_section
 
 
 def trim_video(context: Context, output_file: str):
@@ -99,7 +99,7 @@ def create_video_from_extract_frames(context: Context, output_file: str):
 def append_video_resize_filter(context: Context):
     """
     For ffmpeg, there's a video filter to resize a video to a given resolution.
-    For dandere2x, we need a very specific set of video resolutions to work with.  This method applies that filter
+    For freddie, we need a very specific set of video resolutions to work with.  This method applies that filter
     to the video in order for it to work correctly.
     """
 

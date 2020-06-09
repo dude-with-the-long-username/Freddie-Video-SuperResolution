@@ -13,7 +13,7 @@ import shutil
 import time
 from sys import platform
 
-from dandere2xlib.utils.thread_utils import CancellationToken
+from freddielib.utils.thread_utils import CancellationToken
 
 
 def get_operating_system():
@@ -96,7 +96,7 @@ def wait_on_either_file(file_1: str, file_2: str, cancel=CancellationToken()):
         time.sleep(.001)
 
 
-# Sometimes dandere2x is offsync with window's handlers, and a directory might be deleted after
+# Sometimes freddie is offsync with window's handlers, and a directory might be deleted after
 # the call was made, so in some cases make sure it's completely deleted before moving on during runtime
 def wait_on_delete_dir(dir: str):
     logger = logging.getLogger(__name__)
@@ -184,7 +184,7 @@ def valid_input_resolution(width: int, height: int, block_size: int):
 
 def create_directories(workspace: str, directories_list: list):
     """
-    In dandere2x's context file, there's a list of directories"""
+    In freddie's context file, there's a list of directories"""
 
     # need to create workspace first or else subdirectories wont get made correctly
     try:

@@ -1,7 +1,7 @@
-dandere2x:
+freddie:
   usersettings:
-    #        input_file: Input file for Dandere2x to use
-    #        output_file:  Where to put the video produced by Dandere2x
+    #        input_file: Input file for Freddie to use
+    #        output_file:  Where to put the video produced by Freddie
     #        input_folder: Input folder to use when using raw_config_gui_upscale_folder_driver
     #        output_folder: Where to put the outputs for videos when using raw_config_gui_upscale_folder_driver
     #
@@ -14,7 +14,7 @@ dandere2x:
     #        denoise_level: Waifu2x denoise level.
     #                       Options: [0-3]
     #
-    #        quality_minimum: The minimum quality Dandere2x can lose when producing block matches. Note:
+    #        quality_minimum: The minimum quality Freddie can lose when producing block matches. Note:
     #                         Note: The developer HIGHLY does not recommend using 100 for this setting.
     #                         Recommended: 80-85.
     #                         Options: [0-100]
@@ -55,7 +55,7 @@ dandere2x:
 
     debug: false
     workspace: ..\workspace\sideways_vid\ # path to the workspace folder (lots of files will be written here)
-    dandere2x_cpp_dir: ..\externals\dandere2x_cpp.exe # path to dandere2x_cpp binary file
+    freddie_cpp_dir: ..\externals\freddie_cpp.exe # path to freddie_cpp binary file
     workspace_use_temp: false
     gui_delete_workspace_after: false
     extension_type: .jpg

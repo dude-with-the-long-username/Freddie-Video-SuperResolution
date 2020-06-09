@@ -8,7 +8,7 @@ import subprocess
 import threading
 
 from context import Context
-from dandere2xlib.utils.dandere2x_utils import file_exists, get_lexicon_value, wait_on_either_file
+from freddielib.utils.freddie_utils import file_exists, get_lexicon_value, wait_on_either_file
 
 
 class Waifu2xVulkanLegacy(threading.Thread):

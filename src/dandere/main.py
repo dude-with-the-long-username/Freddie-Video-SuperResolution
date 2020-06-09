@@ -7,14 +7,14 @@ import time
 import yaml
 
 from context import Context
-from dandere2x import Dandere2x
-from dandere2xlib.utils.dandere2x_utils import get_operating_system, wait_on_file, dir_exists, file_exists
-from wrappers.dandere2x_wrappers.dandere2x_gui_upscale_folder_wrapper import Dandere2xUpscaleFolder
+from freddie import Freddie
+from freddielib.utils.freddie_utils import get_operating_system, wait_on_file, dir_exists, file_exists
+from wrappers.freddie_wrappers.freddie_gui_upscale_folder_wrapper import FreddieUpscaleFolder
 
 
 def load_parser():
     """
-    Create a parser for dandere2x for the needed arguments
+    Create a parser for freddie for the needed arguments
     :return:
     """
 
@@ -45,39 +45,39 @@ def load_parser():
 
 def cli_start(args):
     """
-    Start Dandere2x using command line
+    Start Freddie using command line
 
     :param args: args loaded from load_parser()
     :return: none
     """
 
     # get config based on OS
-    configfile = "dandere2x_%s.yaml" % get_operating_system()
+    configfile = "freddie_%s.yaml" % get_operating_system()
 
     # load yaml
 
     with open(configfile, "r") as read_file:
         config = yaml.safe_load(read_file)
 
-    config['dandere2x']['usersettings']['output_file'] = args.output_file
-    config['dandere2x']['usersettings']['input_file'] = args.input_file
+    config['freddie']['usersettings']['output_file'] = args.output_file
+    config['freddie']['usersettings']['input_file'] = args.input_file
 
-    config['dandere2x']['usersettings']['block_size'] = args.block_size
-    config['dandere2x']['usersettings']['quality_minimum'] = args.image_quality
-    config['dandere2x']['usersettings']['waifu2x_type'] = args.waifu2x_type
-    config['dandere2x']['usersettings']['scale_factor'] = args.scale_factor
-    config['dandere2x']['usersettings']['denoise_level'] = args.noise_level
+    config['freddie']['usersettings']['block_size'] = args.block_size
+    config['freddie']['usersettings']['quality_minimum'] = args.image_quality
+    config['freddie']['usersettings']['waifu2x_type'] = args.waifu2x_type
+    config['freddie']['usersettings']['scale_factor'] = args.scale_factor
+    config['freddie']['usersettings']['denoise_level'] = args.noise_level
 
     print("arg input file: " + args.input_file)
     if os.path.isdir(args.input_file):
         print("is not dir")
         if not os.path.isdir(args.output_file):
-            print("input is type 'directory' but output is not type 'directory'. Dandere2x exiting")
+            print("input is type 'directory' but output is not type 'directory'. Freddie exiting")
             sys.exit(1)
-        config['dandere2x']['usersettings']['input_folder'] = args.input_file
-        config['dandere2x']['usersettings']['output_folder'] = args.output_file
+        config['freddie']['usersettings']['input_folder'] = args.input_file
+        config['freddie']['usersettings']['output_folder'] = args.output_file
 
-        d2x = Dandere2xUpscaleFolder(config)
+        d2x = FreddieUpscaleFolder(config)
         d2x.start()
 
     else:
@@ -91,12 +91,12 @@ def cli_start(args):
             try:
                 shutil.rmtree(context.workspace)
             except PermissionError:
-                print("Trying to delete workspace via RM tree threw PermissionError - Dandere2x may not work.")
+                print("Trying to delete workspace via RM tree threw PermissionError - Freddie may not work.")
 
             while (file_exists(context.workspace)):
                 time.sleep(1)
 
-        d2x = Dandere2x(context)
+        d2x = Freddie(context)
         d2x.start()
         d2x.join()
 
@@ -112,11 +112,11 @@ def start_gui():
 
 def debug_start():
     """
-    Debug function meant for dandere2x development. Starts dandere2x with minimal exterior function calls and
+    Debug function meant for freddie development. Starts freddie with minimal exterior function calls and
     will only work based off what's in the yaml.
     """
     # get config based on OS
-    configfile = "dandere2x_%s.yaml" % get_operating_system()
+    configfile = "freddie_%s.yaml" % get_operating_system()
 
     # load yaml
 
@@ -127,13 +127,13 @@ def debug_start():
     context = Context(config)
 
     # continue d2x
-    d2x = Dandere2x(context)
+    d2x = Freddie(context)
     d2x.run_concurrent()
 
 
 def main():
     """
-    Start a Dandere2x session either through CLI or GUI. Times the session used in either case.
+    Start a Freddie session either through CLI or GUI. Times the session used in either case.
 
     :return:
     """

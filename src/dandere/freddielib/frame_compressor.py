@@ -2,7 +2,7 @@ import os
 import threading
 
 from context import Context
-from dandere2xlib.utils.thread_utils import CancellationToken
+from freddielib.utils.thread_utils import CancellationToken
 from wrappers.frame.frame import Frame
 
 

@@ -31,15 +31,15 @@ import sys
 import threading
 import time
 
-from dandere2xlib.core.merge import Merge
-from dandere2xlib.core.residual import Residual
-from dandere2xlib.frame_compressor import CompressFrames
-from dandere2xlib.mindiskusage import MinDiskUsage
-from dandere2xlib.status import Status
-from dandere2xlib.utils.dandere2x_utils import delete_directories, create_directories, rename_file
-from dandere2xlib.utils.dandere2x_utils import valid_input_resolution, file_exists, wait_on_file
-from dandere2xlib.utils.thread_utils import CancellationToken
-from wrappers.dandere2x_cpp import Dandere2xCppWrapper
+from freddielib.core.merge import Merge
+from freddielib.core.residual import Residual
+from freddielib.frame_compressor import CompressFrames
+from freddielib.mindiskusage import MinDiskUsage
+from freddielib.status import Status
+from freddielib.utils.freddie_utils import delete_directories, create_directories, rename_file
+from freddielib.utils.freddie_utils import valid_input_resolution, file_exists, wait_on_file
+from freddielib.utils.thread_utils import CancellationToken
+from wrappers.freddie_cpp import FreddieCppWrapper
 from wrappers.ffmpeg.ffmpeg import extract_frames, append_video_resize_filter, concat_two_videos, migrate_tracks
 from wrappers.waifu2x.waifu2x_caffe import Waifu2xCaffe
 from wrappers.waifu2x.waifu2x_converter_cpp import Waifu2xConverterCpp
@@ -47,11 +47,11 @@ from wrappers.waifu2x.waifu2x_vulkan import Waifu2xVulkan
 from wrappers.waifu2x.waifu2x_vulkan_legacy import Waifu2xVulkanLegacy
 
 
-class Dandere2x(threading.Thread):
+class Freddie(threading.Thread):
     """
-    The main driver that can be called in a various level of circumstances - for example, dandere2x can be started
-    from dandere2x_gui_wrapper.py, raw_config_driver.py, or raw_config_gui_driver.py. In each scenario, this is the
-    class that is called when Dandere2x ultimately needs to start.
+    The main driver that can be called in a various level of circumstances - for example, freddie can be started
+    from freddie_gui_wrapper.py, raw_config_driver.py, or raw_config_gui_driver.py. In each scenario, this is the
+    class that is called when Freddie ultimately needs to start.
     """
 
     def __init__(self, context):
@@ -61,7 +61,7 @@ class Dandere2x(threading.Thread):
         self.residual_thread = Residual(self.context)
         self.waifu2x = self._get_waifu2x_class(self.context.waifu2x_type)
         self.compress_frames_thread = CompressFrames(self.context)
-        self.dandere2x_cpp_thread = Dandere2xCppWrapper(self.context)
+        self.freddie_cpp_thread = FreddieCppWrapper(self.context)
         self.status_thread = Status(context)
 
         # session specific
@@ -80,10 +80,10 @@ class Dandere2x(threading.Thread):
         self.alive = True
         self.cancel_token = CancellationToken()
         self._stopevent = threading.Event()
-        threading.Thread.__init__(self, name="dandere2x_thread")
+        threading.Thread.__init__(self, name="freddie_thread")
 
     def __extract_frames(self):
-        """Extract the initial frames needed for a dandere2x to run depending on session type."""
+        """Extract the initial frames needed for a freddie to run depending on session type."""
 
         if self.context.use_min_disk:
             if self.resume_session:
@@ -100,7 +100,7 @@ class Dandere2x(threading.Thread):
             self.min_disk_demon = MinDiskUsage(self.context)
 
     def __upscale_first_frame(self):
-        """The first frame of any dandere2x session needs to be upscaled fully, and this is done as it's own
+        """The first frame of any freddie session needs to be upscaled fully, and this is done as it's own
         process. Ensuring the first frame can get upscaled also provides a source of error checking for the user."""
 
         # measure the time to upscale a single frame for printing purposes
@@ -116,7 +116,7 @@ class Dandere2x(threading.Thread):
 
             print("Could not upscale first file.. check logs file to see what's wrong")
             logging.info("Could not upscale first file.. check logs file to see what's wrong")
-            logging.info("Exiting Dandere2x...")
+            logging.info("Exiting Freddie...")
             sys.exit(1)
 
         print("\n Time to upscale an uncompressed frame: " + str(round(time.time() - one_frame_time, 2)))
@@ -125,9 +125,9 @@ class Dandere2x(threading.Thread):
 
         start = time.time() # for printing out total runtime
 
-        logging.info("dandere2x joined called")
+        logging.info("freddie joined called")
 
-        # due to a weird quirk, prevent dandere2x from being joined until nosound.mkv exists (at least).
+        # due to a weird quirk, prevent freddie from being joined until nosound.mkv exists (at least).
         wait_on_file(self.context.nosound_file)
 
         logging.info("joining residual")
@@ -141,8 +141,8 @@ class Dandere2x(threading.Thread):
         self.merge_thread.join()
         logging.info("joining waifu2x")
         self.waifu2x.join()
-        logging.info("joining dandere2x")
-        self.dandere2x_cpp_thread.join()
+        logging.info("joining freddie")
+        self.freddie_cpp_thread.join()
         logging.info("joining status")
         self.status_thread.join()
         logging.info("joining compress")
@@ -161,7 +161,7 @@ class Dandere2x(threading.Thread):
                               file_to_be_concat,
                               self.context.nosound_file)
 
-        # if this became a suspended dandere2x session, kill it.
+        # if this became a suspended freddie session, kill it.
         if not self.alive:
             logging.info("Invoking suspend exit conditions")
             self.__suspend_exit_conditions()
@@ -174,7 +174,7 @@ class Dandere2x(threading.Thread):
         print("Total runtime : ", time.time() - start)
 
     def __suspend_exit_conditions(self):
-        """This is called when dandere2x session is suspended midway through completition, need to save
+        """This is called when freddie session is suspended midway through completition, need to save
         meta data and needed files to be resumable."""
 
         suspended_file = self.context.workspace + str(self.context.signal_merged_count + 1) + ".mp4"
@@ -184,7 +184,7 @@ class Dandere2x(threading.Thread):
 
     def __leave_killed_message(self):
         """
-        write the yaml file for the next resume session. The next dandere2x will resume in the same folder
+        write the yaml file for the next resume session. The next freddie will resume in the same folder
         where the previous one left off, but at at \last_upscaled_frame\ (\30\).
         :return:
         """
@@ -196,8 +196,8 @@ class Dandere2x(threading.Thread):
         config_file_unparsed['resume_settings']['nosound_file'] = self.context.nosound_file
         config_file_unparsed['resume_settings']['resume_session'] = True
 
-        config_file_unparsed['dandere2x']['developer_settings']['workspace'] = \
-            config_file_unparsed['dandere2x']['developer_settings']['workspace'] + \
+        config_file_unparsed['freddie']['developer_settings']['workspace'] = \
+            config_file_unparsed['freddie']['developer_settings']['workspace'] + \
             str(self.context.signal_merged_count + 1) + os.path.sep
 
         yaml.dump(config_file_unparsed, file, sort_keys=False)
@@ -214,15 +214,15 @@ class Dandere2x(threading.Thread):
 
         if self.context.use_min_disk:
             self.min_disk_demon.kill()
-        self.dandere2x_cpp_thread.kill()
+        self.freddie_cpp_thread.kill()
         self.status_thread.kill()
 
     def __set_first_frame(self):
         """
-        Set the first frame for the relevent dandere2x threads when doing a resume session
+        Set the first frame for the relevent freddie threads when doing a resume session
         """
         self.compress_frames_thread.set_start_frame(self.first_frame)
-        self.dandere2x_cpp_thread.set_start_frame(self.first_frame)
+        self.freddie_cpp_thread.set_start_frame(self.first_frame)
         self.merge_thread.set_start_frame(self.first_frame)
         self.residual_thread.set_start_frame(self.first_frame)
         self.waifu2x.set_start_frame(self.first_frame)
@@ -233,7 +233,7 @@ class Dandere2x(threading.Thread):
 
     def run(self):
         """
-        Starts the dandere2x_python process at large.
+        Starts the freddie_python process at large.
         """
 
         print("threading at start of runtime")
@@ -242,12 +242,12 @@ class Dandere2x(threading.Thread):
         # directories need to be created before we do anything
         create_directories(self.context.workspace, self.context.directories)
 
-        # dandere2x needs the width and height to be a share a common factor with the block size,
+        # freddie needs the width and height to be a share a common factor with the block size,
         # so append a video filter if needed to make the size conform
         if not valid_input_resolution(self.context.width, self.context.height, self.context.block_size):
             append_video_resize_filter(self.context)
 
-        # create the list of threads to use for dandere2x
+        # create the list of threads to use for freddie
         self.__setup_jobs()
 
         if self.resume_session:
@@ -256,11 +256,11 @@ class Dandere2x(threading.Thread):
         # extract the initial frames needed for execution depending on type (min_disk_usage / non min_disk_usage )
         self.__extract_frames()
 
-        # first frame needs to be upscaled manually before dandere2x process starts.
+        # first frame needs to be upscaled manually before freddie process starts.
         self.__upscale_first_frame()
 
         self.compress_frames_thread.start()
-        self.dandere2x_cpp_thread.start()
+        self.freddie_cpp_thread.start()
         self.merge_thread.start()
         self.residual_thread.start()
         self.waifu2x.start()
@@ -293,7 +293,7 @@ class Dandere2x(threading.Thread):
 
     def delete_workspace_files(self):
         """
-        Delete the files produced by dandere2x (beside logs) if this method is called.
+        Delete the files produced by freddie (beside logs) if this method is called.
         """
         delete_directories(self.context.directories)
         no_sound = os.path.join(self.context.workspace, "nosound.mkv")

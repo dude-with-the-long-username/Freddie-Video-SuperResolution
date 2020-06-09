@@ -2,8 +2,8 @@ from wrappers.frame.frame import DisplacementVector
 from wrappers.frame.frame import Frame
 
 
-# This is the inversion (sort of) function of what Dandere2x_cpp's pframe does (which is more commented).
-# Dandere2x_CPP tells us how to take apart an image using vectors, this tells us how to put the upscaled version
+# This is the inversion (sort of) function of what Freddie_cpp's pframe does (which is more commented).
+# Freddie_CPP tells us how to take apart an image using vectors, this tells us how to put the upscaled version
 # back together.
 
 def pframe_image(context,

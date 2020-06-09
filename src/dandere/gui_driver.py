@@ -8,51 +8,51 @@ from PyQt5 import QtCore, QtGui
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QFileDialog
 
 from context import Context
-from dandere2x import Dandere2x
-from dandere2xlib.utils.dandere2x_utils import get_operating_system, dir_exists, file_exists
-from gui.Dandere2xGUI import Ui_Dandere2xGUI
+from freddie import Freddie
+from freddielib.utils.freddie_utils import get_operating_system, dir_exists, file_exists
+from gui.FreddieGUI import Ui_FreddieGUI
 
 
-class QtDandere2xThread(QtCore.QThread):
+class QtFreddieThread(QtCore.QThread):
     finished = QtCore.pyqtSignal()
 
     def __init__(self, parent, config_yaml):
-        super(QtDandere2xThread, self).__init__(parent)
+        super(QtFreddieThread, self).__init__(parent)
 
         context = Context(config_yaml)
-        self.dandere2x = Dandere2x(context)
+        self.freddie = Freddie(context)
 
     def run(self):
 
-        if dir_exists(self.dandere2x.context.workspace):
+        if dir_exists(self.freddie.context.workspace):
             print("Deleted Folder")
 
             # This is a recurring bug that seems to be popping up on other people's operating systems.
             # I'm unsure if this will fix it, but it could provide a solution for people who can't even get d2x to work.
             try:
-                shutil.rmtree(self.dandere2x.context.workspace)
+                shutil.rmtree(self.freddie.context.workspace)
             except PermissionError:
-                print("Trying to delete workspace via RM tree threw PermissionError - Dandere2x may not work.")
+                print("Trying to delete workspace via RM tree threw PermissionError - Freddie may not work.")
 
-            while(file_exists(self.dandere2x.context.workspace)):
+            while(file_exists(self.freddie.context.workspace)):
                 time.sleep(1)
 
         try:
-            self.dandere2x.start()
+            self.freddie.start()
 
         except:
-            print("dandere2x failed to work correctly")
+            print("freddie failed to work correctly")
             sys.exit(1)
 
         self.join()
 
     def join(self):
-        self.dandere2x.join()
+        self.freddie.join()
         self.finished.emit()
 
     def kill(self):
-        self.dandere2x.kill()
-        # self.dandere2x.join()
+        self.freddie.kill()
+        # self.freddie.join()
 
 
 class AppWindow(QMainWindow):
@@ -62,7 +62,7 @@ class AppWindow(QMainWindow):
 
     def __init__(self):
         super().__init__()
-        self.ui = Ui_Dandere2xGUI()
+        self.ui = Ui_FreddieGUI()
         self.ui.setupUi(self)
 
         # load 'this folder' in a pyinstaller friendly way
@@ -92,9 +92,9 @@ class AppWindow(QMainWindow):
 
         # theres a bug with qt designer and '80' for default quality needs to be set elsewhere
         _translate = QtCore.QCoreApplication.translate
-        self.ui.image_quality_box.setCurrentText(_translate("Dandere2xGUI", "85"))
-        self.ui.block_size_combo_box.setCurrentText(_translate("Dandere2xGUI", "20"))
-        self.ui.waifu2x_type_combo_box.setCurrentText(_translate("Dandere2xGUI", "Waifu2x-Vulkan"))
+        self.ui.image_quality_box.setCurrentText(_translate("FreddieGUI", "85"))
+        self.ui.block_size_combo_box.setCurrentText(_translate("FreddieGUI", "20"))
+        self.ui.waifu2x_type_combo_box.setCurrentText(_translate("FreddieGUI", "Waifu2x-Vulkan"))
         # self.ui.video_icon.setPixmap(QtGui.QPixmap("assets\\aka.png"))
 
         self.config_buttons()
@@ -189,11 +189,11 @@ class AppWindow(QMainWindow):
         print(os.getcwd())
 
         if get_operating_system() == 'win32':
-            with open(os.path.join(self.this_folder, "dandere2x_win32.yaml"), "r") as read_file:
+            with open(os.path.join(self.this_folder, "freddie_win32.yaml"), "r") as read_file:
                 config_yaml = yaml.safe_load(read_file)
 
         elif get_operating_system() == 'linux':
-            with open(os.path.join(self.this_folder, "dandere2x_linux.yaml"), "r") as read_file:
+            with open(os.path.join(self.this_folder, "freddie_linux.yaml"), "r") as read_file:
                 config_yaml = yaml.safe_load(read_file)
 
         if self.is_suspend_file(self.input_file):
@@ -204,24 +204,24 @@ class AppWindow(QMainWindow):
         else:
             print("is not suspend file")
             # if user selected video file
-            config_yaml['dandere2x']['usersettings']['output_file'] = self.output_file
-            config_yaml['dandere2x']['usersettings']['input_file'] = self.input_file
-            config_yaml['dandere2x']['usersettings']['block_size'] = self.block_size
-            config_yaml['dandere2x']['usersettings']['quality_minimum'] = self.image_quality
-            config_yaml['dandere2x']['usersettings']['waifu2x_type'] = self.waifu2x_type
-            config_yaml['dandere2x']['usersettings']['scale_factor'] = self.scale_factor
-            config_yaml['dandere2x']['usersettings']['denoise_level'] = self.noise_level
+            config_yaml['freddie']['usersettings']['output_file'] = self.output_file
+            config_yaml['freddie']['usersettings']['input_file'] = self.input_file
+            config_yaml['freddie']['usersettings']['block_size'] = self.block_size
+            config_yaml['freddie']['usersettings']['quality_minimum'] = self.image_quality
+            config_yaml['freddie']['usersettings']['waifu2x_type'] = self.waifu2x_type
+            config_yaml['freddie']['usersettings']['scale_factor'] = self.scale_factor
+            config_yaml['freddie']['usersettings']['denoise_level'] = self.noise_level
 
 
-        print("output_file = " + config_yaml['dandere2x']['usersettings']['output_file'])
-        print("input_file = " + config_yaml['dandere2x']['usersettings']['input_file'])
-        print("block_size = " + str(config_yaml['dandere2x']['usersettings']['block_size']))
-        print("block_size = " + str(config_yaml['dandere2x']['usersettings']['block_size']))
-        print("image_quality = " + str(config_yaml['dandere2x']['usersettings']['quality_minimum']))
-        print("waifu2x_type = " + config_yaml['dandere2x']['usersettings']['waifu2x_type'])
-        print("workspace = " + config_yaml['dandere2x']['developer_settings']['workspace'])
+        print("output_file = " + config_yaml['freddie']['usersettings']['output_file'])
+        print("input_file = " + config_yaml['freddie']['usersettings']['input_file'])
+        print("block_size = " + str(config_yaml['freddie']['usersettings']['block_size']))
+        print("block_size = " + str(config_yaml['freddie']['usersettings']['block_size']))
+        print("image_quality = " + str(config_yaml['freddie']['usersettings']['quality_minimum']))
+        print("waifu2x_type = " + config_yaml['freddie']['usersettings']['waifu2x_type'])
+        print("workspace = " + config_yaml['freddie']['developer_settings']['workspace'])
 
-        self.thread = QtDandere2xThread(self, config_yaml)
+        self.thread = QtFreddieThread(self, config_yaml)
         self.thread.finished.connect(self.update)
 
         self.disable_buttons()
@@ -250,7 +250,7 @@ class AppWindow(QMainWindow):
         self.thread.terminate()
         self.enable_buttons()
 
-    # Parse everything we need from the GUI into a dandere2x friendly format
+    # Parse everything we need from the GUI into a freddie friendly format
     # Leave everything as STR's since config files are just strings
     def parse_gui_inputs(self):
 
@@ -287,7 +287,7 @@ class AppWindow(QMainWindow):
         if self.ui.noise_3_radio_button.isChecked():
             self.noise_level = 3
 
-        # Dandere2x Settings
+        # Freddie Settings
 
         self.image_quality = int(self.ui.image_quality_box.currentText())
         self.block_size = int(self.ui.block_size_combo_box.currentText())

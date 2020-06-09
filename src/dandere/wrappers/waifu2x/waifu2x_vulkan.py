@@ -7,15 +7,15 @@ import threading
 import psutil
 
 from context import Context
-from dandere2xlib.utils.dandere2x_utils import file_exists, get_lexicon_value, rename_file, wait_on_either_file
-from dandere2xlib.utils.dandere2x_utils import wait_on_file
-from dandere2xlib.utils.thread_utils import CancellationToken
-from dandere2xlib.utils.yaml_utils import get_options_from_section
+from freddielib.utils.freddie_utils import file_exists, get_lexicon_value, rename_file, wait_on_either_file
+from freddielib.utils.freddie_utils import wait_on_file
+from freddielib.utils.thread_utils import CancellationToken
+from freddielib.utils.yaml_utils import get_options_from_section
 
 
 class Waifu2xVulkan(threading.Thread):
     """
-    The waifu2x-vulkan wrapper, with custom functions written that are specific for dandere2x to work.
+    The waifu2x-vulkan wrapper, with custom functions written that are specific for freddie to work.
     """
 
     def __init__(self, context: Context):
@@ -82,13 +82,13 @@ class Waifu2xVulkan(threading.Thread):
 
         Code Description:
 
-        The current Dandere2x implementation requires files to be removed from the 'residual_images' folder
+        The current Freddie implementation requires files to be removed from the 'residual_images' folder
         during runtime. When waifu2x-ncnn-vulkan calls 'upscale folder', it will only upscale what's in the folder
         at that moment, and it'll re-upscale the images that it already upscaled in a previous iteration.
 
-        Considering that residual_images produced by Dandere2x don't all exist during the initial
+        Considering that residual_images produced by Freddie don't all exist during the initial
         Waifu2x call, we need to call the 'upscale folder' command multiple times. To prevent waifu2x from re-upscaling
-        the same image twice, various work arounds are in place to allow Dandere2x and Waifu2x to work in real time.
+        the same image twice, various work arounds are in place to allow Freddie and Waifu2x to work in real time.
 
         Briefly, 1) Create a list of names that will be upscaled by waifu2x,
                  2) Call waifu2x to upscale whatever images are in 'differences' folder
@@ -194,7 +194,7 @@ class Waifu2xVulkan(threading.Thread):
         """
         Waifu2x-ncnn-vulkan will accept a file as "file.jpg" and output as "file.jpg.png".
 
-        Unfortunately, dandere2x wouldn't recognize this, so this function renames each name to the correct naming
+        Unfortunately, freddie wouldn't recognize this, so this function renames each name to the correct naming
         convention. This function will iteratiate through every file needing to be upscaled waifu2x-ncnn-vulkan,
         and change it's name after it's done saving
 

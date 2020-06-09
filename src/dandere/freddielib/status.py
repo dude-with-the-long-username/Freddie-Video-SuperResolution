@@ -3,7 +3,7 @@ import threading
 import time
 
 from context import Context
-from dandere2xlib.utils.thread_utils import CancellationToken
+from freddielib.utils.thread_utils import CancellationToken
 
 
 # todo

@@ -3,13 +3,13 @@ from fractions import Fraction
 from wrappers.ffmpeg.ffprobe import get_video_info, get_width_height, get_frame_rate, get_frame_count, get_aspect_ratio
 
 
-# A simple way to just have a class w/ the contents we need to operate dandere2x
+# A simple way to just have a class w/ the contents we need to operate freddie
 
 class VideoSettings:
 
     def __init__(self, ffprobe_dir, video_file: str):
         """
-        A simple class to get the video settings needed for dandere2x using ffprobe.
+        A simple class to get the video settings needed for freddie using ffprobe.
         """
 
         self.ffprobe_dir = ffprobe_dir

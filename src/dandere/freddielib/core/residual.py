@@ -5,8 +5,8 @@ import math
 import threading
 
 from context import Context
-from dandere2xlib.utils.dandere2x_utils import get_lexicon_value, get_list_from_file_wait
-from dandere2xlib.utils.thread_utils import CancellationToken
+from freddielib.utils.freddie_utils import get_lexicon_value, get_list_from_file_wait
+from freddielib.utils.thread_utils import CancellationToken
 from wrappers.frame.frame import DisplacementVector, Frame
 
 
@@ -112,7 +112,7 @@ class Residual(threading.Thread):
         This section can best be explained through pictures. A visual way of expressing what 'make_residual_image'
         is doing is this section in the wiki.
 
-        https://github.com/aka-katto/dandere2x/wiki/How-Dandere2x-Works#observation_3
+        https://github.com/aka-katto/freddie/wiki/How-Freddie-Works#observation_3
 
         Inputs:
             - frame(x)
@@ -175,7 +175,7 @@ class Residual(threading.Thread):
         This section can best be explained through pictures. A visual way of expressing what 'debug'
         is doing is this section in the wiki.
 
-        https://github.com/aka-katto/dandere2x/wiki/How-Dandere2x-Works#part-1-identifying-what-needs-to-be-drawn
+        https://github.com/aka-katto/freddie/wiki/How-Freddie-Works#part-1-identifying-what-needs-to-be-drawn
 
         In other words, this method shows where residuals are, and is useful for finding good settings to use for a video.
 

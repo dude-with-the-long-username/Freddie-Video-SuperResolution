@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
-    <class>Dandere2xGUI</class>
-    <widget class="QMainWindow" name="Dandere2xGUI">
+    <class>FreddieGUI</class>
+    <widget class="QMainWindow" name="FreddieGUI">
         <property name="geometry">
             <rect>
                 <x>0</x>
@@ -132,7 +132,7 @@
             <cursorShape>ArrowCursor</cursorShape>
         </property>
         <property name="windowTitle">
-            <string>Dandere2x GUI</string>
+            <string>Freddie GUI</string>
         </property>
         <property name="autoFillBackground">
             <bool>true</bool>
@@ -2168,7 +2168,7 @@
                     </font>
                 </property>
                 <property name="toolTip">
-                    <string>Block size Dandere2x will use to compute blocks. You NEED to select a video first before
+                    <string>Block size Freddie will use to compute blocks. You NEED to select a video first before
                         selecting this.,
                     </string>
                 </property>
@@ -2542,9 +2542,9 @@
                     </font>
                 </property>
                 <property name="toolTip">
-                    <string>The block size Dandere2x will use in computing blocks.
+                    <string>The block size Freddie will use in computing blocks.
                         If your input video's resolution does not evenly divide the block size,
-                        then Dandere2x will resize the video to the dimensions closest
+                        then Freddie will resize the video to the dimensions closest
                     </string>
                 </property>
                 <property name="text">

@@ -4,21 +4,21 @@ import os
 import shutil
 import time
 
-from dandere2x import Dandere2x
+from freddie import Freddie
 from context import Context
-from dandere2xlib.utils.dandere2x_utils import wait_on_file, dir_exists, file_exists
+from freddielib.utils.freddie_utils import wait_on_file, dir_exists, file_exists
 
-class Dandere2xUpscaleFolder:
+class FreddieUpscaleFolder:
     """
-    A wrapper that wraps around dandere2x that upscales an entire folder. It does this by creating
+    A wrapper that wraps around freddie that upscales an entire folder. It does this by creating
     a new 'yaml' config for each video file in the folder.
     """
 
     def __init__(self, config_yaml):
         self.config_yaml = config_yaml
-        self.input_folder = config_yaml['dandere2x']['usersettings']['input_folder']
-        self.output_folder = config_yaml['dandere2x']['usersettings']['output_folder']
-        self.workspace = config_yaml['dandere2x']['developer_settings']['workspace']
+        self.input_folder = config_yaml['freddie']['usersettings']['input_folder']
+        self.output_folder = config_yaml['freddie']['usersettings']['output_folder']
+        self.workspace = config_yaml['freddie']['developer_settings']['workspace']
 
     def start(self):
 
@@ -40,10 +40,10 @@ class Dandere2xUpscaleFolder:
             # Set the output name to be 'upscaled + original name'
             output_name = os.path.join(self.output_folder, "upscaled_" + name_only + ".mp4")
 
-            # change the yaml to contain the data for this iteration of dandere2x
-            iteration_yaml['dandere2x']['usersettings']['input_file'] = file_name
-            iteration_yaml['dandere2x']['usersettings']['output_file'] = output_name
-            iteration_yaml['dandere2x']['developer_settings']['workspace'] = self.workspace + str(x) + os.path.sep
+            # change the yaml to contain the data for this iteration of freddie
+            iteration_yaml['freddie']['usersettings']['input_file'] = file_name
+            iteration_yaml['freddie']['usersettings']['output_file'] = output_name
+            iteration_yaml['freddie']['developer_settings']['workspace'] = self.workspace + str(x) + os.path.sep
 
             context = Context(iteration_yaml)
 
@@ -54,12 +54,12 @@ class Dandere2xUpscaleFolder:
                 try:
                     shutil.rmtree(context.workspace)
                 except PermissionError:
-                    print("Trying to delete workspace via RM tree threw PermissionError - Dandere2x may not work.")
+                    print("Trying to delete workspace via RM tree threw PermissionError - Freddie may not work.")
 
                 while (file_exists(context.workspace)):
                     time.sleep(1)
 
-            d2x = Dandere2x(context)
+            d2x = Freddie(context)
             d2x.start()
 
             wait_on_file(d2x.context.nosound_file)

@@ -4,8 +4,8 @@ import threading
 import time
 
 from context import Context
-from dandere2xlib.utils.dandere2x_utils import get_lexicon_value
-from dandere2xlib.utils.thread_utils import CancellationToken
+from freddielib.utils.freddie_utils import get_lexicon_value
+from freddielib.utils.thread_utils import CancellationToken
 # from wrappers.cv2.progress_frame_extractor_cv2 import ProgressiveFramesExtractorCV2
 from wrappers.ffmpeg.progressive_frame_extractor_ffmpeg import ProgressiveFramesExtractorFFMPEG
 
@@ -76,7 +76,7 @@ class MinDiskUsage(threading.Thread):
 
     def extract_initial_frames(self):
         """
-        Extract 'max_frames_ahead' needed for Dandere2x to start with.
+        Extract 'max_frames_ahead' needed for Freddie to start with.
 
         Author: Tremex. 
         """
@@ -87,7 +87,7 @@ class MinDiskUsage(threading.Thread):
 
     def __delete_used_files(self, remove_before):
         """
-        Delete the files produced by dandere2x up to index_to_remove.
+        Delete the files produced by freddie up to index_to_remove.
 
         Author: Tremex
         """

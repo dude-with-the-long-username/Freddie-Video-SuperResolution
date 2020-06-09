@@ -6,8 +6,8 @@ import threading
 import time
 
 from context import Context
-from dandere2xlib.utils.dandere2x_utils import get_lexicon_value, wait_on_either_file, file_exists, rename_file
-from dandere2xlib.utils.yaml_utils import get_options_from_section
+from freddielib.utils.freddie_utils import get_lexicon_value, wait_on_either_file, file_exists, rename_file
+from freddielib.utils.yaml_utils import get_options_from_section
 
 
 class Waifu2xConverterCpp(threading.Thread):
@@ -47,9 +47,9 @@ class Waifu2xConverterCpp(threading.Thread):
         logging.basicConfig(filename=self.workspace + 'waifu2x.log', level=logging.INFO)
 
     # (description from waifu2x_caffe)
-    # The current Dandere2x implementation requires files to be removed from the folder
-    # During runtime. As files produced by Dandere2x don't all exist during the initial
-    # Waifu2x call, various work arounds are in place to allow Dandere2x and Waifu2x to work in real time.
+    # The current Freddie implementation requires files to be removed from the folder
+    # During runtime. As files produced by Freddie don't all exist during the initial
+    # Waifu2x call, various work arounds are in place to allow Freddie and Waifu2x to work in real time.
 
     # Briefly, 1) Create a list of names that will be upscaled by waifu2x,
     #          2) Call waifu2x to upscale whatever images are in 'differences' folder
@@ -115,7 +115,7 @@ class Waifu2xConverterCpp(threading.Thread):
         subprocess.call(exec, shell=False, stderr=console_output, stdout=console_output)
 
     # Waifu2x-Converter-Cpp adds this ugly '[NS-L3][x2.000000]' to files, so
-    # this function just renames the files so Dandere2x can interpret them correctly.
+    # this function just renames the files so Freddie can interpret them correctly.
     def __fix_names(self):
 
         list_of_names = os.listdir(self.residual_upscaled_dir)

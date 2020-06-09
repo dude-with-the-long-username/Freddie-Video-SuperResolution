@@ -1,4 +1,4 @@
-['ffmpeg', '-hwaccel', 'none', '-i', '/home/sylvia/Projects/Freddie-Video-SuperResolution/Freddie-Video-SuperResolution/240p.mp4', '-qscale:v', '2', '-vf', 'noise=c1s=8:c0f=u,scale=420:240', '-r', '23.98', '/home/sylvia/Projects/dandere2x/src/workspace/default/inputs/frame%01d.jpg']ffmpeg version n4.2.3 Copyright (c) 2000-2020 the FFmpeg developers
+['ffmpeg', '-hwaccel', 'none', '-i', '/home/sylvia/Projects/Freddie-Video-SuperResolution/Freddie-Video-SuperResolution/240p.mp4', '-qscale:v', '2', '-vf', 'noise=c1s=8:c0f=u,scale=420:240', '-r', '23.98', '/home/sylvia/Projects/freddie/src/workspace/default/inputs/frame%01d.jpg']ffmpeg version n4.2.3 Copyright (c) 2000-2020 the FFmpeg developers
   built with gcc 10.1.0 (GCC)
   configuration: --prefix=/usr --disable-debug --disable-static --disable-stripping --enable-avisynth --enable-fontconfig --enable-gmp --enable-gnutls --enable-gpl --enable-ladspa --enable-libaom --enable-libass --enable-libbluray --enable-libdav1d --enable-libdrm --enable-libfreetype --enable-libfribidi --enable-libgsm --enable-libiec61883 --enable-libjack --enable-libmfx --enable-libmodplug --enable-libmp3lame --enable-libopencore_amrnb --enable-libopencore_amrwb --enable-libopenjpeg --enable-libopus --enable-libpulse --enable-libsoxr --enable-libspeex --enable-libsrt --enable-libssh --enable-libtheora --enable-libv4l2 --enable-libvidstab --enable-libvmaf --enable-libvorbis --enable-libvpx --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxcb --enable-libxml2 --enable-libxvid --enable-nvdec --enable-nvenc --enable-omx --enable-shared --enable-version3
   libavutil      56. 31.100 / 56. 31.100
@@ -26,7 +26,7 @@ Stream mapping:
   Stream #0:0 -> #0:0 (h264 (native) -> mjpeg (native))
 Press [q] to stop, [?] for help
 [swscaler @ 0x55a4a6888b80] deprecated pixel format used, make sure you did set range correctly
-Output #0, image2, to '/home/sylvia/Projects/dandere2x/src/workspace/default/inputs/frame%01d.jpg':
+Output #0, image2, to '/home/sylvia/Projects/freddie/src/workspace/default/inputs/frame%01d.jpg':
   Metadata:
     major_brand     : isom
     minor_version   : 512

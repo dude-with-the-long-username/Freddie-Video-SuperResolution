@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'C:\Users\windwoz\Documents\GitHub\dandere2x\src\gui\Dandere2xGui.ui'
+# Form implementation generated from reading ui file 'C:\Users\windwoz\Documents\GitHub\freddie\src\gui\FreddieGui.ui'
 #
 # Created by: PyQt5 UI code generator 5.13.2
 #
@@ -10,10 +10,10 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_Dandere2xGUI(object):
-    def setupUi(self, Dandere2xGUI):
-        Dandere2xGUI.setObjectName("Dandere2xGUI")
-        Dandere2xGUI.resize(707, 336)
+class Ui_FreddieGUI(object):
+    def setupUi(self, FreddieGUI):
+        FreddieGUI.setObjectName("FreddieGUI")
+        FreddieGUI.resize(707, 336)
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(83, 221, 108))
         brush.setStyle(QtCore.Qt.SolidPattern)
@@ -51,10 +51,10 @@ class Ui_Dandere2xGUI(object):
         brush = QtGui.QBrush(QtGui.QColor(83, 87, 96))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Window, brush)
-        Dandere2xGUI.setPalette(palette)
-        Dandere2xGUI.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
-        Dandere2xGUI.setAutoFillBackground(True)
-        self.centralwidget = QtWidgets.QWidget(Dandere2xGUI)
+        FreddieGUI.setPalette(palette)
+        FreddieGUI.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
+        FreddieGUI.setAutoFillBackground(True)
+        self.centralwidget = QtWidgets.QWidget(FreddieGUI)
         self.centralwidget.setObjectName("centralwidget")
         self.select_video_button = QtWidgets.QPushButton(self.centralwidget)
         self.select_video_button.setGeometry(QtCore.QRect(30, 210, 171, 41))
@@ -937,78 +937,78 @@ class Ui_Dandere2xGUI(object):
         font.setPointSize(14)
         self.suspend_button.setFont(font)
         self.suspend_button.setObjectName("suspend_button")
-        Dandere2xGUI.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(Dandere2xGUI)
+        FreddieGUI.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(FreddieGUI)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 707, 21))
         self.menubar.setObjectName("menubar")
-        Dandere2xGUI.setMenuBar(self.menubar)
-        self.statusbar = QtWidgets.QStatusBar(Dandere2xGUI)
+        FreddieGUI.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(FreddieGUI)
         self.statusbar.setObjectName("statusbar")
-        Dandere2xGUI.setStatusBar(self.statusbar)
+        FreddieGUI.setStatusBar(self.statusbar)
 
-        self.retranslateUi(Dandere2xGUI)
-        QtCore.QMetaObject.connectSlotsByName(Dandere2xGUI)
+        self.retranslateUi(FreddieGUI)
+        QtCore.QMetaObject.connectSlotsByName(FreddieGUI)
 
-    def retranslateUi(self, Dandere2xGUI):
+    def retranslateUi(self, FreddieGUI):
         _translate = QtCore.QCoreApplication.translate
-        Dandere2xGUI.setWindowTitle(_translate("Dandere2xGUI", "Dandere2x GUI"))
-        self.select_video_button.setText(_translate("Dandere2xGUI", "Select Video"))
-        self.select_output_button.setText(_translate("Dandere2xGUI", "Select Output"))
-        self.upscale_button.setText(_translate("Dandere2xGUI", "Upscale!"))
-        self.video_label.setText(_translate("Dandere2xGUI", "No video selected"))
-        self.workspace_label.setText(_translate("Dandere2xGUI", "No output selected"))
-        self.noise_0_radio_button.setText(_translate("Dandere2xGUI", "Level 0"))
-        self.noise_1_radio_button.setText(_translate("Dandere2xGUI", "Level 1"))
-        self.noise_3_radio_button.setText(_translate("Dandere2xGUI", "Level 3"))
-        self.noise_2_radio_button.setText(_translate("Dandere2xGUI", "Level 2"))
-        self.video_label_2.setText(_translate("Dandere2xGUI", "Denoise Level"))
-        self.waifu2x_type_combo_box.setCurrentText(_translate("Dandere2xGUI", "Waifu2x-Caffe"))
-        self.waifu2x_type_combo_box.setItemText(0, _translate("Dandere2xGUI", "Waifu2x-Caffe"))
-        self.waifu2x_type_combo_box.setItemText(1, _translate("Dandere2xGUI", "Waifu2x-Vulkan-Legacy"))
-        self.waifu2x_type_combo_box.setItemText(2, _translate("Dandere2xGUI", "Waifu2x-Vulkan"))
-        self.waifu2x_type_combo_box.setItemText(3, _translate("Dandere2xGUI", "Waifu2x-Converter-Cpp"))
-        self.video_label_3.setText(_translate("Dandere2xGUI", "Waifu2x - Type"))
-        self.video_label_4.setText(_translate("Dandere2xGUI", "Scale Factor"))
-        self.scale_1_radio_button.setText(_translate("Dandere2xGUI", "1 x"))
-        self.scale_2_radio_button.setText(_translate("Dandere2xGUI", "2 x"))
-        self.scale_4_radio_button.setText(_translate("Dandere2xGUI", "4 x"))
-        self.scale_3_radio_button.setText(_translate("Dandere2xGUI", "3 x"))
-        self.image_quality_box.setCurrentText(_translate("Dandere2xGUI", "95"))
-        self.image_quality_box.setItemText(0, _translate("Dandere2xGUI", "95"))
-        self.image_quality_box.setItemText(1, _translate("Dandere2xGUI", "90"))
-        self.image_quality_box.setItemText(2, _translate("Dandere2xGUI", "85"))
-        self.image_quality_box.setItemText(3, _translate("Dandere2xGUI", "80"))
-        self.image_quality_box.setItemText(4, _translate("Dandere2xGUI", "75"))
-        self.image_quality_box.setItemText(5, _translate("Dandere2xGUI", "70"))
-        self.image_quality_box.setItemText(6, _translate("Dandere2xGUI", "65"))
-        self.image_quality_box.setItemText(7, _translate("Dandere2xGUI", "60"))
-        self.image_quality_box.setItemText(8, _translate("Dandere2xGUI", "55"))
-        self.image_quality_box.setItemText(9, _translate("Dandere2xGUI", "50"))
-        self.video_label_5.setText(_translate("Dandere2xGUI", "Image Quality"))
-        self.video_label_6.setToolTip(_translate("Dandere2xGUI",
-                                                 "Block size Dandere2x will use to compute blocks. You NEED to select a video first before\n"
+        FreddieGUI.setWindowTitle(_translate("FreddieGUI", "Freddie GUI"))
+        self.select_video_button.setText(_translate("FreddieGUI", "Select Video"))
+        self.select_output_button.setText(_translate("FreddieGUI", "Select Output"))
+        self.upscale_button.setText(_translate("FreddieGUI", "Upscale!"))
+        self.video_label.setText(_translate("FreddieGUI", "No video selected"))
+        self.workspace_label.setText(_translate("FreddieGUI", "No output selected"))
+        self.noise_0_radio_button.setText(_translate("FreddieGUI", "Level 0"))
+        self.noise_1_radio_button.setText(_translate("FreddieGUI", "Level 1"))
+        self.noise_3_radio_button.setText(_translate("FreddieGUI", "Level 3"))
+        self.noise_2_radio_button.setText(_translate("FreddieGUI", "Level 2"))
+        self.video_label_2.setText(_translate("FreddieGUI", "Denoise Level"))
+        self.waifu2x_type_combo_box.setCurrentText(_translate("FreddieGUI", "Waifu2x-Caffe"))
+        self.waifu2x_type_combo_box.setItemText(0, _translate("FreddieGUI", "Waifu2x-Caffe"))
+        self.waifu2x_type_combo_box.setItemText(1, _translate("FreddieGUI", "Waifu2x-Vulkan-Legacy"))
+        self.waifu2x_type_combo_box.setItemText(2, _translate("FreddieGUI", "Waifu2x-Vulkan"))
+        self.waifu2x_type_combo_box.setItemText(3, _translate("FreddieGUI", "Waifu2x-Converter-Cpp"))
+        self.video_label_3.setText(_translate("FreddieGUI", "Waifu2x - Type"))
+        self.video_label_4.setText(_translate("FreddieGUI", "Scale Factor"))
+        self.scale_1_radio_button.setText(_translate("FreddieGUI", "1 x"))
+        self.scale_2_radio_button.setText(_translate("FreddieGUI", "2 x"))
+        self.scale_4_radio_button.setText(_translate("FreddieGUI", "4 x"))
+        self.scale_3_radio_button.setText(_translate("FreddieGUI", "3 x"))
+        self.image_quality_box.setCurrentText(_translate("FreddieGUI", "95"))
+        self.image_quality_box.setItemText(0, _translate("FreddieGUI", "95"))
+        self.image_quality_box.setItemText(1, _translate("FreddieGUI", "90"))
+        self.image_quality_box.setItemText(2, _translate("FreddieGUI", "85"))
+        self.image_quality_box.setItemText(3, _translate("FreddieGUI", "80"))
+        self.image_quality_box.setItemText(4, _translate("FreddieGUI", "75"))
+        self.image_quality_box.setItemText(5, _translate("FreddieGUI", "70"))
+        self.image_quality_box.setItemText(6, _translate("FreddieGUI", "65"))
+        self.image_quality_box.setItemText(7, _translate("FreddieGUI", "60"))
+        self.image_quality_box.setItemText(8, _translate("FreddieGUI", "55"))
+        self.image_quality_box.setItemText(9, _translate("FreddieGUI", "50"))
+        self.video_label_5.setText(_translate("FreddieGUI", "Image Quality"))
+        self.video_label_6.setToolTip(_translate("FreddieGUI",
+                                                 "Block size Freddie will use to compute blocks. You NEED to select a video first before\n"
                                                  "                        selecting this.,\n"
                                                  "                    "))
-        self.video_label_6.setText(_translate("Dandere2xGUI", "Block Size"))
-        self.block_size_combo_box.setCurrentText(_translate("Dandere2xGUI", "10"))
-        self.block_size_combo_box.setItemText(0, _translate("Dandere2xGUI", "10"))
-        self.block_size_combo_box.setItemText(1, _translate("Dandere2xGUI", "15"))
-        self.block_size_combo_box.setItemText(2, _translate("Dandere2xGUI", "20"))
-        self.block_size_combo_box.setItemText(3, _translate("Dandere2xGUI", "30"))
-        self.block_size_combo_box.setItemText(4, _translate("Dandere2xGUI", "40"))
-        self.block_size_combo_box.setItemText(5, _translate("Dandere2xGUI", "60"))
-        self.video_label_7.setText(_translate("Dandere2xGUI", "Settings"))
-        self.block_help.setToolTip(_translate("Dandere2xGUI", "The block size Dandere2x will use in computing blocks.\n"
+        self.video_label_6.setText(_translate("FreddieGUI", "Block Size"))
+        self.block_size_combo_box.setCurrentText(_translate("FreddieGUI", "10"))
+        self.block_size_combo_box.setItemText(0, _translate("FreddieGUI", "10"))
+        self.block_size_combo_box.setItemText(1, _translate("FreddieGUI", "15"))
+        self.block_size_combo_box.setItemText(2, _translate("FreddieGUI", "20"))
+        self.block_size_combo_box.setItemText(3, _translate("FreddieGUI", "30"))
+        self.block_size_combo_box.setItemText(4, _translate("FreddieGUI", "40"))
+        self.block_size_combo_box.setItemText(5, _translate("FreddieGUI", "60"))
+        self.video_label_7.setText(_translate("FreddieGUI", "Settings"))
+        self.block_help.setToolTip(_translate("FreddieGUI", "The block size Freddie will use in computing blocks.\n"
                                                               "                        If your input video\'s resolution does not evenly divide the block size,\n"
-                                                              "                        then Dandere2x will resize the video to the dimensions closest\n"
+                                                              "                        then Freddie will resize the video to the dimensions closest\n"
                                                               "                    "))
-        self.block_help.setText(_translate("Dandere2xGUI", "?"))
+        self.block_help.setText(_translate("FreddieGUI", "?"))
         self.quality_help.setToolTip(
-            _translate("Dandere2xGUI", "The acceptable quality loss in an frame depicted by JPEG\'s standards.\n"
+            _translate("FreddieGUI", "The acceptable quality loss in an frame depicted by JPEG\'s standards.\n"
                                        "                        The developer highly recommends a value between 70-80\n"
                                        "                    "))
-        self.quality_help.setText(_translate("Dandere2xGUI", "?"))
+        self.quality_help.setText(_translate("FreddieGUI", "?"))
         self.upscale_status_label.setWhatsThis(
-            _translate("Dandere2xGUI", "Yo u need to select a video and select a workspace to proceed"))
-        self.upscale_status_label.setText(_translate("Dandere2xGUI", "No files selected"))
-        self.suspend_button.setText(_translate("Dandere2xGUI", "Suspend Session"))
+            _translate("FreddieGUI", "Yo u need to select a video and select a workspace to proceed"))
+        self.upscale_status_label.setText(_translate("FreddieGUI", "No files selected"))
+        self.suspend_button.setText(_translate("FreddieGUI", "Suspend Session"))

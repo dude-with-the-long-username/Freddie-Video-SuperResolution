@@ -7,9 +7,9 @@ import time
 import psutil
 
 from context import Context
-from dandere2xlib.utils.dandere2x_utils import get_lexicon_value, file_exists, wait_on_file
-from dandere2xlib.utils.yaml_utils import get_options_from_section
-from dandere2xlib.utils.thread_utils import CancellationToken
+from freddielib.utils.freddie_utils import get_lexicon_value, file_exists, wait_on_file
+from freddielib.utils.yaml_utils import get_options_from_section
+from freddielib.utils.thread_utils import CancellationToken
 
 
 class Waifu2xCaffe(threading.Thread):
@@ -72,9 +72,9 @@ class Waifu2xCaffe(threading.Thread):
     def join(self, timeout=None):
         threading.Thread.join(self, timeout)
 
-    # The current Dandere2x implementation requires files to be removed from the folder
-    # During runtime. As files produced by Dandere2x don't all exist during the initial
-    # Waifu2x call, various work arounds are in place to allow Dandere2x and Waifu2x to work in real time.
+    # The current Freddie implementation requires files to be removed from the folder
+    # During runtime. As files produced by Freddie don't all exist during the initial
+    # Waifu2x call, various work arounds are in place to allow Freddie and Waifu2x to work in real time.
 
     # Briefly, 1) Create a list of names that will be upscaled by waifu2x,
     #          2) Call waifu2x to upscale whatever images are in 'differences' folder

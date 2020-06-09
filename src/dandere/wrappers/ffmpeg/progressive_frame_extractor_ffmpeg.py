@@ -4,8 +4,8 @@ import time
 
 import psutil
 
-from dandere2xlib.utils.dandere2x_utils import file_exists, file_is_empty
-from dandere2xlib.utils.yaml_utils import get_options_from_section
+from freddielib.utils.freddie_utils import file_exists, file_is_empty
+from freddielib.utils.yaml_utils import get_options_from_section
 from wrappers.frame.frame import Frame
 
 
@@ -15,7 +15,7 @@ class ProgressiveFramesExtractorFFMPEG:
     This is achieved by freezing the FFMPEG process responsible for extracting frames when the needed frame appears,
     and unfreezing it when we need to extract another.
 
-    Saves into dandere2x's 'inputs' DIR.
+    Saves into freddie's 'inputs' DIR.
     """
 
     def __init__(self, context, input_file):

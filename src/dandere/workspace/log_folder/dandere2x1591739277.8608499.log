@@ -1,5 +1,5 @@
-INFO:root:dandere2x joined called
-INFO:dandere2xlib.utils.dandere2x_utils:/home/sylvia/Projects/dandere2x/src/workspace/default/nosound.mp4 does not exist, waiting
+INFO:root:freddie joined called
+INFO:freddielib.utils.freddie_utils:/home/sylvia/Projects/freddie/src/workspace/default/nosound.mp4 does not exist, waiting
 INFO:wrappers.ffmpeg.progressive_frame_extractor_ffmpeg:extracting frames
 INFO:root:Could not upscale first file.. check logs file to see what's wrong
-INFO:root:Exiting Dandere2x...
+INFO:root:Exiting Freddie...

@@ -13,7 +13,7 @@ class FadeData:
 
 def fade_image(context, frame_base: Frame, list_correction: list):
     """
-    Apply a flat scalar to the respective blocks in the image. See "fade.cpp" in dandere2x_cpp for more in depth
+    Apply a flat scalar to the respective blocks in the image. See "fade.cpp" in freddie_cpp for more in depth
     documentation. Roughly
 
         frame_next = frame_next + scalar

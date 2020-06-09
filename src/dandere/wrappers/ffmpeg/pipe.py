@@ -2,7 +2,7 @@ import subprocess
 import threading
 import time
 
-from dandere2xlib.utils.yaml_utils import get_options_from_section
+from freddielib.utils.yaml_utils import get_options_from_section
 
 
 class Pipe():
