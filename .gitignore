@@ -1,5 +1,6 @@
 # *.mp4
 #*.bmp
-#*.png
+*.png
 __pycache__
 .vim
+*.npy

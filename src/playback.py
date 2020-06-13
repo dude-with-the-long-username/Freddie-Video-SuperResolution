@@ -12,4 +12,4 @@ def send_to_playback_buffer(np_frame):
     """
     # TODO: implement actual buffering here  <15-03-20, Balamurali M> #
     # TODO: remove display np frame line in production <15-03-20, Balamurali M> #
-    display_np_frame(np_frame)
+    # display_np_frame(np_frame)
