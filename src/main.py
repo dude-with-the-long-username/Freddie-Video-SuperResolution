@@ -4,7 +4,7 @@ from playback import send_to_playback_buffer
 import sys
 
 
-def np_frame_upscale(np_frame):
+def upscale_np_frame(np_frame):
     """Upscale given np_frame with neural nets
 
     :np_frame: numpy array
@@ -29,13 +29,13 @@ def super_res(filename):
         np_frame = frame.to_ndarray(format='rgb24')
         if start_of_scene(frame):
             prev_np_frame = np_frame
-            upscaled_frame = np_frame_upscale(np_frame)
+            upscaled_frame = upscale_np_frame(np_frame)
             send_to_playback_buffer(np_frame)
         else:
             diff = np.subtract(np_frame, prev_np_frame)
             #write diff to /train
             np.save("train/lr/%s" % str(frame.index), np.asarray(diff))
-            upscaled_diff = np_frame_upscale(diff)
+            upscaled_diff = upscale_np_frame(diff)
             print("size of diff", len(upscaled_diff.nonzero()[0]))
             frame_merge(upscaled_frame, upscaled_diff)
             send_to_playback_buffer(upscaled_frame)
