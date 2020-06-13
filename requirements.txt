@@ -3,3 +3,5 @@ ipython
 matplotlib
 numpy
 scikit-video
+tensorflow
+sklearn
