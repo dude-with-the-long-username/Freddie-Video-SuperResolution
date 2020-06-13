@@ -33,6 +33,8 @@ def super_res(filename):
             send_to_playback_buffer(np_frame)
         else:
             diff = np.subtract(np_frame, prev_np_frame)
+            #write diff to /train
+            np.save("train/lr/%s" % str(frame.index), np.asarray(diff))
             upscaled_diff = np_frame_upscale(diff)
             print("size of diff", len(upscaled_diff.nonzero()[0]))
             frame_merge(upscaled_frame, upscaled_diff)
