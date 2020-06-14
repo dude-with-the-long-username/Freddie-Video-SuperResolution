@@ -1,0 +1,5 @@
+Writing OpenCL-Binary to: /home/sylvia/.waifu2x/GeForce_GTX_1050.bin
+OpenCL: GeForce GTX 1050
+Processing file [1/1] "/home/sylvia/Projects/Freddie-Video-SuperResolution/Freddie-Video-SuperResolution/src/dandere/workspace/default/inputs/frame1.jpg": Done, took: 0s total, file: 0.482s avg: 1.087s
+Finished processing 1 files, took: 1.087secs total, filter: 0.435secs; 0 files skipped, 0 files errored. [GFLOPS:  287.54, GFLOPS-Filter:  718.73]
+['/usr/bin/waifu2x-converter-cpp', '-i', '/home/sylvia/Projects/Freddie-Video-SuperResolution/Freddie-Video-SuperResolution/src/dandere/workspace/default/inputs/frame1.jpg', '--noise-level', '0', '--scale-ratio', '2', '--force-OpenCL', '--silent', '-o', '/home/sylvia/Projects/Freddie-Video-SuperResolution/Freddie-Video-SuperResolution/src/dandere/workspace/default/merged/merged_1.jpg']

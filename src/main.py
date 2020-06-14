@@ -34,7 +34,7 @@ def super_res(filename):
         else:
             diff = np.subtract(np_frame, prev_np_frame)
             #write diff to /train
-            # np.save("train/lr/%s" % str(frame.index), np.asarray(diff))
+            np.save("./Super-Resolution_CNN/dataset/train_lr/%s.npy" % str(frame.index), np.asarray(diff))
             upscaled_diff = upscale_np_frame(diff)
             print("size of diff", len(upscaled_diff.nonzero()[0]))
             frame_merge(prev_np_frame, upscaled_diff)
@@ -55,4 +55,4 @@ def frame_merge(latest_frame, upscaled_diff):
 
 if __name__ == "__main__":
     # filename = sys.argv[1]
-    super_res('v/mha_s4_ep2.mp4')
+    super_res('./../240p.mp4')

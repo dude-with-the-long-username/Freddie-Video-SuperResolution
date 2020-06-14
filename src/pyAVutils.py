@@ -49,7 +49,7 @@ def make_generator(filename):
     :returns: generator object that generates av.VideoFrame objects
 
     """
-    container = av.open('v/mha_s4_ep2.mp4')
+    container = av.open(filename)
     return container.decode(video = 0)
 
 if __name__ == "__main__":

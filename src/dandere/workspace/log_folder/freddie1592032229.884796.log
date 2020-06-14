@@ -1,0 +1,15 @@
+INFO:root:freddie joined called
+INFO:freddielib.utils.freddie_utils:/home/sylvia/Projects/Freddie-Video-SuperResolution/Freddie-Video-SuperResolution/src/dandere/workspace/default/nosound.mp4 does not exist, waiting
+INFO:wrappers.ffmpeg.progressive_frame_extractor_ffmpeg:extracting frames
+INFO:wrappers.waifu2x.waifu2x_converter_cpp:manually upscaling file
+INFO:wrappers.waifu2x.waifu2x_converter_cpp:['/usr/bin/waifu2x-converter-cpp', '-i', '/home/sylvia/Projects/Freddie-Video-SuperResolution/Freddie-Video-SuperResolution/src/dandere/workspace/default/inputs/frame1.jpg', '--noise-level', '0', '--scale-ratio', '2', '--force-OpenCL', '--silent', '-o', '/home/sylvia/Projects/Freddie-Video-SuperResolution/Freddie-Video-SuperResolution/src/dandere/workspace/default/merged/merged_1.jpg']
+INFO:wrappers.freddie_cpp:['/home/sylvia/Projects/Freddie-Video-SuperResolution/Freddie-Video-SuperResolution/src/dandere/externals/freddie_cpp', '/home/sylvia/Projects/Freddie-Video-SuperResolution/Freddie-Video-SuperResolution/src/dandere/workspace/default/', '2901', '20', '8', 'n', '1', '.jpg']
+INFO:wrappers.freddie_cpp:d2xcpp ended unexpectedly
+INFO:freddielib.mindiskusage:on frame x: 1
+INFO:freddielib.utils.freddie_utils:/home/sylvia/Projects/Freddie-Video-SuperResolution/Freddie-Video-SuperResolution/src/dandere/workspace/default/residual_data/residual_1.txt does not exist, waiting
+INFO:freddielib.utils.freddie_utils:/home/sylvia/Projects/Freddie-Video-SuperResolution/Freddie-Video-SuperResolution/src/dandere/workspace/default/residual_upscaled/output_000001.png does not exist, waiting
+INFO:wrappers.waifu2x.waifu2x_converter_cpp:waifu2xconv session
+INFO:wrappers.waifu2x.waifu2x_converter_cpp:['/usr/bin/waifu2x-converter-cpp', '-i', '/home/sylvia/Projects/Freddie-Video-SuperResolution/Freddie-Video-SuperResolution/src/dandere/workspace/default/residual_images/', '--noise-level', '0', '--scale-ratio', '2', '--force-OpenCL', '--silent', '-o', '/home/sylvia/Projects/Freddie-Video-SuperResolution/Freddie-Video-SuperResolution/src/dandere/workspace/default/residual_upscaled/']
+INFO:wrappers.frame.frame:/home/sylvia/Projects/Freddie-Video-SuperResolution/Freddie-Video-SuperResolution/src/dandere/workspace/default/residual_upscaled/output_000001.png dne
+INFO:wrappers.frame.frame:/home/sylvia/Projects/Freddie-Video-SuperResolution/Freddie-Video-SuperResolution/src/dandere/workspace/default/inputs/frame21.jpg dne
+INFO:root:joining residual
