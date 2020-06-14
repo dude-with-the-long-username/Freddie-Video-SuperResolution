@@ -23,10 +23,13 @@ def super_res(filename):
 
     """
     videogen = make_generator(filename)
-    prev_np_frame = np.zeros(3)
+    # prev_np_frame = np.zeros(3)
+    prev_np_frame = next(videogen).to_ndarray(format='rgb24')
     for frame in videogen:
+        # breakpoint()
         # print("LR frame number", frame.index)
         np_frame = frame.to_ndarray(format='rgb24')
+        # print(np_frame.shape)
         if start_of_scene(frame):
             np_frame_2x = upscale_np_frame(np_frame)
             prev_np_frame = np_frame_2x
@@ -34,7 +37,7 @@ def super_res(filename):
         else:
             diff = np.subtract(np_frame, prev_np_frame)
             #write diff to /train
-            np.save("./Super-Resolution_CNN/dataset/train_lr/%s.npy" % str(frame.index), np.asarray(diff))
+            np.save("Super-Resolution_CNN/dataset/train_lr/%s" % str(frame.index), np.asarray(diff))
             upscaled_diff = upscale_np_frame(diff)
             print("size of diff", len(upscaled_diff.nonzero()[0]))
             frame_merge(prev_np_frame, upscaled_diff)
@@ -49,10 +52,9 @@ def frame_merge(latest_frame, upscaled_diff):
     :returns: Writes merge of latest_frame and upscaled_diff to latest_frame
 
     """
-    latest_frame[upscaled_diff.nonzero(
-    )] += upscaled_diff[upscaled_diff.nonzero()]
+    latest_frame[upscaled_diff.nonzero()] += upscaled_diff[upscaled_diff.nonzero()]
 
 
 if __name__ == "__main__":
     # filename = sys.argv[1]
-    super_res('./../240p.mp4')
+    super_res('../240p.mp4')

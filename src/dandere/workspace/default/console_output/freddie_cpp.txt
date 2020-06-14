@@ -1,1 +1,0 @@
-['/home/sylvia/Projects/Freddie-Video-SuperResolution/Freddie-Video-SuperResolution/src/dandere/externals/freddie_cpp', '/home/sylvia/Projects/Freddie-Video-SuperResolution/Freddie-Video-SuperResolution/src/dandere/workspace/default/', '2901', '20', '8', 'n', '1', '.jpg']

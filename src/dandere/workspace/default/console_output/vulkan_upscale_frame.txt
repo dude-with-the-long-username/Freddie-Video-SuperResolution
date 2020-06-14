@@ -1,2 +1,0 @@
-invalid outputpath extension type
-['/usr/bin/waifu2x-ncnn-vulkan', '-i', '/home/sylvia/Projects/dandere2x/src/workspace/default/inputs/frame1.jpg', '-n', '0', '-s', '2', '-t', '256', '-o', '/home/sylvia/Projects/dandere2x/src/workspace/default/merged/merged_1.jpg']
