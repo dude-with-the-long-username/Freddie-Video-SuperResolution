@@ -28,17 +28,17 @@ def super_res(filename):
         # print("LR frame number", frame.index)
         np_frame = frame.to_ndarray(format='rgb24')
         if start_of_scene(frame):
-            prev_np_frame = np_frame
-            upscaled_frame = upscale_np_frame(np_frame)
-            send_to_playback_buffer(np_frame)
+            np_frame_2x = upscale_np_frame(np_frame)
+            prev_np_frame = np_frame_2x
+            send_to_playback_buffer(np_frame_2x)
         else:
             diff = np.subtract(np_frame, prev_np_frame)
             #write diff to /train
-            np.save("train/lr/%s" % str(frame.index), np.asarray(diff))
+            # np.save("train/lr/%s" % str(frame.index), np.asarray(diff))
             upscaled_diff = upscale_np_frame(diff)
             print("size of diff", len(upscaled_diff.nonzero()[0]))
-            frame_merge(upscaled_frame, upscaled_diff)
-            send_to_playback_buffer(upscaled_frame)
+            frame_merge(prev_np_frame, upscaled_diff)
+            send_to_playback_buffer(prev_np_frame)
 
 def frame_merge(latest_frame, upscaled_diff):
     """Replace pixels in latest_frame with corresponding non zero

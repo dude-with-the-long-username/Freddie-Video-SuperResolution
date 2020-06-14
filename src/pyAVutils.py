@@ -3,7 +3,7 @@ import numpy as np
 import av
 
 def display_frame(frame):
-    """Display frame of type av.VideoFrame with matplotlib 
+    """Display frame of type av.VideoFrame with matplotlib
     :frame: object of class av.VideoFrame
     :returns: nothing
     """
@@ -21,7 +21,7 @@ def display_np_frame(np_frame):
 
 def np_frame_diff(frame1, frame2):
     """Get difference of the frames
-    
+
     :frame1: object of class av.VideoFrame
     :frame2: object of class av.VideoFrame
     :returns: difference of 2 frames as av.VideoFrame
@@ -40,10 +40,7 @@ def start_of_scene(frame):
     :returns: True if frame is keyframe
 
     """
-    if frame.key_frame:
-        return True
-    else:
-        return False
+    return frame.key_frame
 
 def make_generator(filename):
     """make a generator to retreive frames from video
@@ -57,4 +54,4 @@ def make_generator(filename):
 
 if __name__ == "__main__":
     pass
-    
+
