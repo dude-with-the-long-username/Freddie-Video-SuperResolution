@@ -41,10 +41,10 @@ By only upscaling the content that can't be produced from a previous frame, Fred
 
 The time-reduction Freddie produces varies based on the user input, as well as the settings used. However, in a benchmark video, Freddie provided a dramatic improvement in time over frame by frame upscaling(without exploiting temporal redundancies):
 
-| Upscaler       | Time  |
-| -------------- | ----- |
-| Freddie        | 03:37 |
-| Frame by frame | 18:34 |
+| Upscaler       | Time    |
+| -------------- | ------- |
+| Freddie        | 03:37 m |
+| Frame by frame | 18:34 m |
 
 # Development environment setup
 
