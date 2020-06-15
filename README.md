@@ -1,7 +1,50 @@
 # Freddie-Video-SuperResolution
+
 Real time Video super resolution software (in progress)
 
 FREDDIE- Finally, a Rad Enhancer for Dynamic Digital Immersive Entertainment
+
+
+
+## Abstract 
+
+Freddie reduces the time needed for Waifu2x to upscale animation (sometimes live-action) videos by applying compression techniques. Just as Netflix uses compression to quickly stream videos to your home, Freddie uses compression to expedite the waifu2x upscaling process.
+
+## Motivation 
+
+Waifu2x (https://github.com/nagadomi/waifu2x) is a powerful tool for upscaling anime-styled images to a higher resolution. It does this using a convolutional neural network, which can bring greater visual fidelity to images by removing the noise produced from resolution upscaling or compression.
+
+![Image of a Waifu2x Upscale](https://i.imgur.com/irRaQ07.png)
+
+*Image: An image of lower resolution ( left ) being brought to a higher resolution using waifu2x (right). Source: Wikipedia*
+
+
+While waifu2x may take 2-4 seconds on a modern graphics card to produce a higher resolution image, this becomes problematic when upscaling frames in a video, as one video-second can take multiple minutes to process. Considering the number of visual redundancies found in anime, having an algorithm to identify these redundancies and recycling them would prove to be an effective time-reducing step to help upscale videos to higher resolutions. Freddie does this by applying I-frame and p-frame compression to anime-styled videos to reduce the work needed by the GPU.
+
+
+![Image of I-Frame Compression](https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/I_P_and_B_frames.svg/1920px-I_P_and_B_frames.svg.png)
+*Image: Different compression types being visualized with PacMan. Source: Wikipedia*
+
+## Methods
+
+Freddie is an upscaling-specific compression algorithm targeted at reducing the GPU time needed to upscale a video. Without going in-depth into the tools used, the following image summarizes the Freddie process, and how it uses previous frames to create future frames.
+
+![Image of Dandere2x](https://i.imgur.com/7cqZz4I.png)
+
+By only upscaling the content that can't be produced from a previous frame, Freddie can dramatically speed up the upscaling process by only upscaling essential information.
+
+## Results
+
+
+
+### Preformance Differences
+
+The time-reduction Freddie produces varies based on the user input, as well as the settings used. However, in a benchmark video, Freddie provided a dramatic improvement in time over Video2x (a lossless waifu2x-video upscaler):
+
+| Upscaler | Time  |
+| -------- | ----- |
+| Freddie  | 03:37 |
+| Video2x  | 18:34 |
 
 # Development environment setup
 
@@ -25,11 +68,11 @@ Ubuntu 18.04 LTS (the same as google colab) users might have version 3.x.x by
 default. Run these commands to get the latest version
 
 	sudo apt remove ffmpeg -y #remove the old version
-
+	
 	sudo add-apt-repository ppa:jonathonf/ffmpeg-4 -y
-
+	
 	sudo apt install ffmpeg -y
-
+	
 	ffmpeg -version #check if latest 4.x.x
 
 After you install latest ffmpeg, install other dependencies of pyAV with
@@ -57,9 +100,9 @@ Source the virtual environment.
 Install python requirements
 
 	pip install -r requirements.txt
-
+	
 	OR
-
+	
 	pip3 install -r requirements.txt # if pip is for python2
 
 Open a text editor like vscode inside the virtualenv by entering this command
@@ -87,9 +130,9 @@ requirements.txt with
 > outside the virtualenv
 
 	pip freeze > requirements.txt
-
+	
 	OR
-
+	
 	pip3 freeze > requirements.txt # if pip is for python2
 
 souce
