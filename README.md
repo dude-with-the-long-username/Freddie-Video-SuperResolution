@@ -4,6 +4,9 @@ Real time Video super resolution software (in progress)
 
 FREDDIE- Finally, a Rad Enhancer for Dynamic Digital Immersive Entertainment
 
+Freddie uses waifu2x & dandere2x under the hood.
+2 amazing project. Do check them out. All credits to their creators.
+
 
 
 ## Abstract 
